@@ -41,6 +41,9 @@ public class FXSpotController {
         if( StringUtils.length(currency2)!=3 ){
             return "length of currency2 must be 3";
         }
+        if( fxRate==null ){
+            return "faRate can not be null";
+        }
 
         FXSpot fxSpot = new FXSpot();
         fxSpot.setId(ThreadLocalRandom.current().nextLong());
