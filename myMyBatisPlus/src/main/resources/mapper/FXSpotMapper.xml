@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chz.myMyBatisPlus.persistence.mapper.FXSpotMapper">
+
+    <resultMap id="fxSpot" type="com.chz.myMyBatisPlus.entity.FXSpot">
+        <id column="id" property="id" />
+        <result column="currency1" property="currency1" />
+        <result column="currency2" property="currency2" />
+        <result column="fx_rate" property="fxRate" />
+        <result column="datetime" property="datetime" typeHandler="com.chz.myMyBatisPlus.typeHandler.ZonedDateTimeTypeHandler" />
+        <result column="labels" property="labels" />
+    </resultMap>
+
+    <select id="selectFXSpot" resultMap="fxSpot">
+        SELECT * FROM fx_spot
+        <where>
+             <if test="fxSpot.currency1!=null">
+                 and currency1 = #{fxSpot.currency1}
+             </if>
+             <if test="fxSpot.currency2!=null">
+                 and currency2 = #{fxSpot.currency2}
+             </if>
+         </where>
+    </select>
+
+</mapper>
+
